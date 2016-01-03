@@ -31,7 +31,7 @@ Item and layout collections gain a `#query` method, which takes query parameters
 
 [source,ruby]
 -----
-@items.query(:kind, eq: 'article')
+@items.query(:kind, :eq, 'article')
 -----
 
 For every item and layout, Nanoc will remember the queries used. When Nanoc needs to determine whether a certain object depends on another object, it will check whether any of the queries executed for the former object matches the latter object. If any query matches, a query dependency exists; if not, no query dependency exists.
@@ -45,7 +45,22 @@ The query language will need to support the following operations:
 * Find by equal attribute (e.g. all items where `kind` equals `article`)
 * Find by included attribute (e.g. all items where `tags` includes `article`)
 
-(wip)
+It is not necessary to support querying by identifier. The glob patterns introduced in Nanoc 4 should be powerful enough for this.
+
+The query DSL will make it easy to generate queries, but using the DSL should not be necessary. For instance, the following creates a query using entities rather than resorting to a DSL:
+
+[source,ruby]
+-----
+query = IdentifiableQuery.new(attribute: :kind, operator: :eq, operand: 'article')
+@items.query(query)
+-----
+
+A potential shorthand for this involves passing arguments directly to `#query`:
+
+[source,ruby]
+-----
+@items.query(:kind, :eq, 'article')
+-----
 
 === Possible implementation
 
