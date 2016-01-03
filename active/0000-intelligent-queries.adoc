@@ -1,0 +1,60 @@
+= Intelligent queries
+:start_date: 2016-01-03
+:rfc_issue: (leave this empty)
+:nanoc_issue: (leave this empty)
+
+== Summary
+
+Introduce a DSL for querying items and layouts, so that Nanoc can know which objects depend on which other objects.
+
+== Motivation
+
+Two problems currently exist:
+
+* When a new item is added to a site, Nanoc recompiles the entire site, because it cannot accurately estimate the impact of the addition of an item. For example, in an site that has individual articles along with an “archive” page that collects all articles, the archive page will be (correctly) recompiled when an article is added, but all other pages will also (incorrect) be recompiled.
+
+* Objects will have useless dependencies on other objects when the former filters objects based on attributes. For instance, an archive page may find items to include using `@items.select { |i| i[:kind] == 'article' }`. This, however, creates a dependency from the archive item onto all items, regardless of whether or not their kind is set to `article`.
+
+With intelligent queries, Nanoc will be able to analyze queries and avoid the aforementioned problems.
+
+Additionally, Nanoc will be able to detect common queries and build indexes dynamically to speed up compilation.
+
+== Detailed design
+
+Item and layout collections gain a `#query` method, which takes query parameters. For example, the following would replace `@items.select { |i| i[:kind] == 'article' }`:
+
+[source,ruby]
+-----
+@items.query(:kind, eq: 'article')
+-----
+
+For every item and layout, Nanoc will remember the queries used. When Nanoc needs to determine whether a certain object depends on another object, it will check whether any of the queries executed for the former object matches the latter object. If any query matches, a query dependency exists; if not, no query dependency exists.
+
+Using the `#each` method, along with any method in the `Enumerable` mixin, will still cause a dependency from the object invoking the method onto any other object.
+
+=== Query language
+
+The query language will need to support the following operations:
+
+* Find by equal attribute (e.g. all items where `kind` equals `article`)
+* Find by included attribute (e.g. all items where `tags` includes `article`)
+
+(wip)
+
+=== Possible implementation
+
+The `#query` method returns an `IdentifiableQuery` with the given params. The methods `#each`, `#to_a`, along with any method in the `Enumerable` mixin, will return/yield objects that match the query stored in the `IdentifiableQuery` object.
+
+On `IdentifiableCollection` objects, the method `#each`, `#to_a`, along with any method in the `Enumerable` mixin will be forwarded to an `IdentifiableQuery` that matches all items.
+
+== Drawbacks
+
+(none)
+
+== Alternatives
+
+* Rather than resorting to a new `#query` method, Nanoc could attempt to derive the behavior of the block passed to `#select` etc, similar to what https://github.com/jeremyevans/sequel[Sequel] does.
+
+== Unresolved questions
+
+(none)
