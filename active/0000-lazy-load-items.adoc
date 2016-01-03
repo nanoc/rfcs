@@ -15,6 +15,8 @@ Do not load all items into memory, but compile them one-by-one.
 
 == Detailed design
 
+This depends on letting data sources find objects. For details, see https://github.com/nanoc/rfcs/pull/1[RFC #1].
+
 (wip)
 
 == Drawbacks
