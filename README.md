@@ -1,10 +1,10 @@
-# nanoc RFCs
+# Nanoc RFCs
 
-For nanoc 4, we’ve set up a process for collecting ideas and refining them before implementation. The RFC (_request for comment_) process is intended to provide a consistent and controlled path for new features to enter the product.
+For Nanoc 4, we’ve set up a process for collecting ideas and refining them before implementation. The RFC (_request for comment_) process is intended to provide a consistent and controlled path for new features to enter the product.
 
 ## Proposing a change
 
-In order to propose a substantial change to nanoc, write a RFC, open a pull request, and get it accepted. In detail:
+In order to propose a substantial change to Nanoc, write a RFC, open a pull request, and get it accepted. In detail:
 
 0. Fork this repository.
 
