@@ -26,6 +26,16 @@ All of these methods are optional. When not implemented, their default behavior 
 
 Item and layout collections will gain access to the data sources. When finding an item or layout given a glob, the item/layout collection will query all data sources.
 
+=== Preprocessor
+
+The preprocessor makes this approach non-trivial, because it is capable of creating, removing and modifying items and layouts. This will be tackled as follows:
+
+* Objects created in the preprocessor will be created in a preprocessor data source.
+
+* For objects deleted in the preprocessor, their identifier will be stored in a set. When an object is created with an identifier that was previously marked as deleted, the identifier will be removed from the set of deleted identifiers.
+
+* Objects that are modified will be treated as deleted and (re)created.
+
 == Drawbacks
 
 (none)
@@ -36,6 +46,4 @@ Item and layout collections will gain access to the data sources. When finding a
 
 == Unresolved questions
 
-The preprocessor makes this approach quite a bit harder, because it is capable of creating, removing and modifying items and layouts. It might also require all items and layouts (or at least references to them) to be loaded into memory.
-
-An idea to help with this would be to create a specific preprocessor data source, along with some structure that describes which items/layouts have been deleted; modified items/layouts are considered as deleted and by this structure, and will be part of this preprocessor data source.
+(none)
