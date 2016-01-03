@@ -11,9 +11,15 @@ Introduce a DSL for querying items and layouts, so that Nanoc can know which obj
 
 Two problems currently exist:
 
-* When a new item is added to a site, Nanoc recompiles the entire site, because it cannot accurately estimate the impact of the addition of an item. For example, in an site that has individual articles along with an “archive” page that collects all articles, the archive page will be (correctly) recompiled when an article is added, but all other pages will also (incorrect) be recompiled.
+* When a new item is added to a site, Nanoc recompiles the entire site, because it cannot accurately estimate the impact of the addition of an item.
++
+For example, in an site that has individual articles along with an “archive” page that collects all articles, the archive page will be (correctly) recompiled when an article is added, but all other pages will also (incorrect) be recompiled.
 
-* Objects will have useless dependencies on other objects when the former filters objects based on attributes. For instance, an archive page may find items to include using `@items.select { |i| i[:kind] == 'article' }`. This, however, creates a dependency from the archive item onto all items, regardless of whether or not their kind is set to `article`.
+* Objects will have useless dependencies on other objects when the former filters objects based on attributes, because accessing the attributes of an object creates a dependency.
++
+For instance, an archive page may find items to include using `@items.select { |i| i[:kind] == 'article' }`. This, however, creates a dependency from the archive item onto all items, regardless of whether or not their kind is set to `article`.
++
+The recommended approach so far for avoiding such dependencies from being generated is to restrict the objects to search by attribute. For example, in order to find all articles, `@items.find_all('/articles/*')` would not generate dependencies on every other item.
 
 With intelligent queries, Nanoc will be able to analyze queries and avoid the aforementioned problems.
 
