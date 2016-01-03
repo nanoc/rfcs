@@ -1,19 +1,23 @@
-= (Fill in the title here)
-:start_date: (fill me in with today’s date, YYYY-MM-DD)
+= Lazy-load items
+:start_date: 2016-01-03
 :rfc_issue: (leave this empty)
 :nanoc_issue: (leave this empty)
 
 == Summary
 
-This is a one-paragraph explanation of the change.
+Do not load all items into memory, but compile them one-by-one.
 
 == Motivation
+
+* reduce memory pressure
+
+* start compiling as soon as possible rather than loading everything first. a step towards parallelization. allow data sources to prefetch items asynchronously
 
 Why are we doing this? What use cases does it support? What is the expected outcome?
 
 == Detailed design
 
-This is the bulk of the RFC. Explain the design in enough detail for somebody familiar with nanoc to understand, and for somebody familiar with nanoc’s internals to implement. This should get into specifics and corner-cases, and include examples of how the feature is used.
+This is the bulk of the RFC. Explain the design in enough detail for somebody familiar with Nanoc to understand, and for somebody familiar with Nanoc’s internals to implement. This should get into specifics and corner-cases, and include examples of how the feature is used.
 
 == Drawbacks
 
