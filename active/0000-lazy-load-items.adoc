@@ -23,7 +23,9 @@ Do not load all items into memory, but compile them one-by-one.
 
 == Alternatives
 
-(wip)
+* Rather than lazy-loading items, load all items into memory but lazy-load their content and attributes instead. This likely will not give much of a performance gain (if any at all), since the content and attributes for each item needs to be loaded at some point anyway, in order for the checksum to be calculated.
++
+To get around this problem, at the end of compilation, the previous checksum of an item could be reused if neither their content nor attributes were loaded.
 
 == Unresolved questions
 
