@@ -6,8 +6,6 @@ nanoc_issue: (leave this empty)
 
 # (Fill in the title here)
 
-## Summary
-
 This is a one-paragraph explanation of the change.
 
 ## Motivation
