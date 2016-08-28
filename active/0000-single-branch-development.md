@@ -36,10 +36,10 @@ Bug fixes will be made on the master branch, rather than on a release branch. Pa
 
 Nanoc will read the `NANOC_FEATURES` environment variable to determine which unreleased features to make accessible. By default, all unreleased features are disabled. The `NANOC_FEATURES` environment variable will be a comma-separated list of feature names.
 
-For example, the following will enable the `profiler` and `config_env` features:
+For example, the following will enable the `profiler` and `environments` features:
 
 ```
-NANOC_FEATURES=profiler,config_env
+NANOC_FEATURES=profiler,environments
 ```
 
 The special feature name `all` will enable all features:
