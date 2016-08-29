@@ -66,7 +66,7 @@ The following steps will need to be performed at the start of the release proces
 
 2. Add the release notes to the _NEWS.md_ file. Ensure no release notes for unreleased are present.
 
-3. Enable all features to be released.
+3. Enable all features to be released by removing the feature flag.
 
 ## Drawbacks
 
