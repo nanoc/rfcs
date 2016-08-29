@@ -58,6 +58,16 @@ To switch to this new approach, follow these steps:
 
 3. Ensure that the version number is that of the last released version, and that the release notes do not contain information about unreleased versions.
 
+### New release strategy
+
+The following steps will need to be performed at the start of the release process:
+
+1. Set `Nanoc::VERSION`.
+
+2. Add the release notes to the _NEWS.md_ file. Ensure no release notes for unreleased are present.
+
+3. Enable all features to be released.
+
 ## Drawbacks
 
 * It will be impossible to make a bugfix on a previous minor release without creating a branch.
