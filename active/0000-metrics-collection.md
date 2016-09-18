@@ -69,13 +69,17 @@ Additionally, in order to not violate anyone’s privacy, the data that is sent 
 
 ### Collection and analysis
 
-Each event will have a unique identifier for the site and the computer that it originates from. This unique identifier will be used for deduplication purposes.
+Each event will have two identifiers:
 
-**TODO:** Figure out how to build this unique identifier.
+* **a machine ID:** an identifier that is unique for the computer (for spam protection purposes). The UUID will be read from `~/.config/nanoc/machine-id`, which will contain a UUID generated with `SecureRandom.uuid`.
 
-**TODO:** Describe how to collect events.
+* **a site ID:** an identifier that is unique for the computer and the site (for correlation purposes). The identifier will consist of a hash of the machine ID (se before) and the full path of the directory the site is located in.
 
-**TODO:** Describe how to analyse events.
+**TODO:** Determine where to read/write the UUID from/to on Windows
+
+The collection system will update the stored data points using the data in the incoming events. The different data points will be stored independently, so that no correlation on individual events is possible, as this is not needed and can be a cause for privacy concerns.
+
+An analysis system on top of the collection system will generate high-level metrics based on all data points, and generate reports to visualize this data. Raw data is discarded after high-level metrics have been generated.
 
 ### Other considerations
 
