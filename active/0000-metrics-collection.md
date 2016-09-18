@@ -20,7 +20,9 @@ Because Nanoc is an offline application, we have no idea about how is it used. H
 
 * **How often are the legacy identifiers and/or patterns used?** Upgrading from Nanoc 3.x to Nanoc 4.x is especially easy when sticking to legacy identifiers and patterns, but their use is discouraged. A large fraction of legacy usage could indicate that the upgrade documentation is below expectations.
 
-* **How large are Nanoc sites? How long do they take to compile?** Answering these questions will clarify how worth it is to focus on optimizing the compilation of large sites.
+* **How long do Nanoc sites take to compile?** Answering these questions will clarify how worth it is to focus on optimizing the compilation of large sites.
+
+* **How many of items in a site are binary? How much time is spent compiling binary items?** This will give an indication on how/if asset management is used.
 
 * **Do people use the preprocessor? How long does the preprocessor take to run?** The preprocessor is a historical anomaly, and the current thinking is to rethink it fundamentally (see e.g. [RFC 4](https://github.com/nanoc/rfcs/pull/4)). If the preprocessor is commonly used, then perhaps Nanoc lacks power in its compilation flow, or perhaps the preprocessor is just too easy to use.
 
