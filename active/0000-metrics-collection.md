@@ -26,6 +26,8 @@ Because Nanoc is an offline application, we have no idea about how is it used. H
 
 * **Do people use the preprocessor? How long does the preprocessor take to run?** The preprocessor is a historical anomaly, and the current thinking is to rethink it fundamentally (see e.g. [RFC 4](https://github.com/nanoc/rfcs/pull/4)). If the preprocessor is commonly used, then perhaps Nanoc lacks power in its compilation flow, or perhaps the preprocessor is just too easy to use.
 
+* **Do people use the postprocessor? How long does the postprocessor take to run?** The preprocessor is a fairly new feature. If the postprocessor takes a long time to run, then this could indicate that the postprocessor is used instead of Nanoc’s compilation workflow.
+
 ## Detailed design
 
 Nanoc will emit events at certain points, enrich them with information about the system and the site, and send these events to nanoc.ws, where they will be collected, deduplicated and spam-filtered, and finally shown in some sort of UI for analysis.
