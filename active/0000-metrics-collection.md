@@ -59,13 +59,13 @@ Nanoc will emit the following events:
 
 ### Privacy considerations
 
-In order to not violate anyone’s privacy, the data that is sent out for collection will be anonymized and reduced to the bare usable minimum.
+Metric collection will be opt-in. The Nanoc CLI will ask on start-up for permission to send this anonymous usage information. (This should happen only once, and only when in an interactive terminal, e.g. using `Nanoc::CLI.tty?`.) When the collected data changes (e.g. a certain metric becomes collected more accurately, or new metrics are collected), Nanoc will ask for permission again.
+
+Additionally, in order to not violate anyone’s privacy, the data that is sent out for collection will be anonymized and reduced to the bare usable minimum.
 
 * When sending numeric metrics, do not send the exact number, but rather bucket them. For instance, if compilation takes 17.3s, report the duration as being in the 10-20s bucket.
 
-* When sending string metrics, such as the Ruby version or the string pattern type, match the value agaist well-known predefined values, and send the predefined value instead. For instance, if we were to send a list of invoked commands, classify all command names that the Nanoc source code does now know about as “other”.
-
-Additionally, the Nanoc CLI will ask on start-up for permission to send this anonymous usage information. (This should happen only once, and only when in an interactive terminal, e.g. using `Nanoc::CLI.tty?`.) When the collected data changes (e.g. a certain metric becomes collected more accurately, or new metrics are collected), Nanoc will ask for permission again.
+* When sending string metrics, such as the Ruby version or the string pattern type, match the value against well-known predefined values, and send the predefined value instead. For instance, if we were to send a list of invoked commands, classify all command names that the Nanoc source code does now know about as “other”.
 
 ### Collection and analysis
 
