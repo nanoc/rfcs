@@ -89,7 +89,7 @@ An analysis system on top of the collection system will generate high-level metr
 
 * **Be safe:** Adding an endpoint on the Nanoc web site for metric collection means creating an attack vector.
 
-* **Be spam-proof**
+* **Be spam-proof:** Be able to detect input that does not correspond to real actual events.
 
 ## Drawbacks
 
