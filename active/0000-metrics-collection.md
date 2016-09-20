@@ -20,6 +20,8 @@ Because Nanoc is an offline application, we have no idea about how is it used. H
 
 * **How often are the legacy identifiers and/or patterns used?** Upgrading from Nanoc 3.x to Nanoc 4.x is especially easy when sticking to legacy identifiers and patterns, but their use is discouraged. A large fraction of legacy usage could indicate that the upgrade documentation is below expectations.
 
+* **Which Nanoc commands are used, and how often?** Answering this question will give an idea of which commands are not useful, and might need to be removed or modified to make them useful. Knowing the number of non-builtin commands will give an idea of whether anything is missing from the base set of built-in commands.
+
 * **How long do Nanoc sites take to compile?** Answering these questions will clarify how worth it is to focus on optimizing the compilation of large sites.
 
 * **How many of items in a site are binary? How much time is spent compiling binary items?** This will give an indication on how/if asset management is used.
