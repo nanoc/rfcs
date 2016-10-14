@@ -1,6 +1,6 @@
 ---
 start_date: 2016-08-28
-rfc_issue: #5
+rfc_issue: "#5"
 ---
 
 # Single-brach development
