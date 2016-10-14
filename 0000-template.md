@@ -1,7 +1,6 @@
 ---
 start_date: (fill me in with today’s date, YYYY-MM-DD)
 rfc_issue: (leave this empty)
-nanoc_issue: (leave this empty)
 ---
 
 # (Fill in the title here)
