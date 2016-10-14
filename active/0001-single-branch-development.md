@@ -1,7 +1,6 @@
 ---
 start_date: 2016-08-28
-rfc_issue: (leave this empty)
-nanoc_issue: (leave this empty)
+rfc_issue: #5
 ---
 
 # Single-brach development
