@@ -3,7 +3,7 @@ start_date: 2016-08-28
 rfc_issue: "#5"
 ---
 
-# Single-brach development
+# Single-branch development
 
 Get rid of release branches and do all development on the master branch.
 
