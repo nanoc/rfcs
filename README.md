@@ -28,4 +28,4 @@ The author of an RFC is not obligated to implement it. Of course, the RFC author
 
 ## Acknowledgements
 
-This nanoc RFC process is greatly inspired by the [Rust RFC process](https://github.com/rust-lang/rfcs) and the [Ember RFC process](https://github.com/emberjs/rfcs).
+This Nanoc RFC process is greatly inspired by the [Rust RFC process](https://github.com/rust-lang/rfcs) and the [Ember RFC process](https://github.com/emberjs/rfcs).
