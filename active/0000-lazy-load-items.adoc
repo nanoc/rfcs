@@ -1,0 +1,34 @@
+= Lazy-load items
+:start_date: 2016-01-03
+:rfc_issue: (leave this empty)
+:nanoc_issue: (leave this empty)
+
+== Summary
+
+Do not load all items into memory, but compile them one-by-one.
+
+== Motivation
+
+* Loading all items in memory is problematic in terms of memory pressure. For large sites, Nanoc can run out of memory, or spend a large amount of time in the garbage collector footnote:[CRuby 2.2 has a generational garbage collector, which helps alleviate this problem. I have not compared performance of CRuby 2.1 and 2.2 in terms of GC performance yet, however.].
+
+* Loading items one-by-one allows compilation to start right away, rather than waiting for all data to have been loaded into memory. With data sources that pre-fetch data, I/O wait time could be reduced to a minimum. This approach will also get us a step closer towards parallelism footnote:[CRuby’s global interpreter lock will prevent us from gaining much here, but it will benefit other Ruby implementations that do not have such a lock, such as JRuby.].
+
+== Detailed design
+
+This depends on letting data sources find objects. For details, see https://github.com/nanoc/rfcs/pull/1[RFC #1].
+
+(wip)
+
+== Drawbacks
+
+(wip)
+
+== Alternatives
+
+* Rather than lazy-loading items, load all items into memory but lazy-load their content and attributes instead. This likely will not give much of a performance gain (if any at all), since the content and attributes for each item needs to be loaded at some point anyway, in order for the checksum to be calculated.
++
+To get around this problem, at the end of compilation, the previous checksum of an item could be reused if neither their content nor attributes were loaded.
+
+== Unresolved questions
+
+(wip)
