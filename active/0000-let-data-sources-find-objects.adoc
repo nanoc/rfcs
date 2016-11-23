@@ -1,0 +1,49 @@
+= Let data source find objects
+:start_date: 2016-01-03
+:rfc_issue: (leave this empty)
+:nanoc_issue: (leave this empty)
+
+== Summary
+
+Move the responsibility of finding items and layouts to the data sources, so that they can implement efficient methods of finding items (e.g. by using globs properly).
+
+== Motivation
+
+The current algorithm for finding items and layouts has a time complexity of O(n) in the number of items/layouts. By pushing down the responsibility for finding items and layouts into the data sources, these data sources can implement a domain-specific, efficient algorithm for finding items (e.g. using globs in a filesystem data source, or indexes in a SQL database).
+
+Additionally, this brings Nanoc a step closer to not requiring items to be loaded into memory at all times. This is currently required in order to do the searching.
+
+== Detailed design
+
+Data sources will get the following new methods:
+
+* `#item_matching(glob)`: return a single item matching the given glob
+* `#items_matching(glob)`: return a collection of items matching the given glob
+* `#layout_matching(glob)`: return a single layout matching the given glob
+* `#layouts_matching(glob)`: return a collection of layouts matching the given glob
+
+All of these methods are optional. When not implemented, their default behavior will be to fall back to `#items` or `#layouts` and use the current (inefficient) searching algorithm.
+
+Item and layout collections will gain access to the data sources. When finding an item or layout given a glob, the item/layout collection will query all data sources.
+
+=== Preprocessor
+
+The preprocessor makes this approach non-trivial, because it is capable of creating, removing and modifying items and layouts. This will be tackled as follows:
+
+* Objects created in the preprocessor will be created in a preprocessor data source.
+
+* For objects deleted in the preprocessor, their identifier will be stored in a set. When an object is created with an identifier that was previously marked as deleted, the identifier will be removed from the set of deleted identifiers.
+
+* Objects that are modified will be treated as deleted and (re)created.
+
+== Drawbacks
+
+(none)
+
+== Alternatives
+
+* Modify the current in-memory algorithm to use globs efficiently. This might require us to re-implement the algorithm of finding objects using globs, rather than reusing what already exists.
+
+== Unresolved questions
+
+(none)
