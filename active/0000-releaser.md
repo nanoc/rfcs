@@ -57,6 +57,18 @@ The release script should have the following properties:
 
 * **idempotent**: The script should be able to be run multiple times for the same version, and steps that have already executed should not cause additional effects. For example, if publishing the gem succeeds, but pushing to GitHub fails, the script should be able to be run again and pushing to GitHub should succeed without failing on the gem push step.
 
+### APIs
+
+* To get the currently released version of the Nanoc gem, make a `GET` request to `https://rubygems.org/api/v1/gems/nanoc.json`. The `version` key contains the version number.
+
+* To verify Git push access, the `--dry-run` option _cannot_ be used, as it is purely client-side. Perhaps pushing to a temporary branch and deleting this branch afterwards could work.
+
+* To verify RubyGems push access for the Nanoc gem, make a `GET` request to `https://rubygems.org/api/v1/gems.json`. The response body is an array that should contain an object that has a key `name` with the value `"nanoc"`.
+
+* **TODO** To verify Google Groups write access, …
+
+* **TODO** To verify Twitter write access, …
+
 ## Drawbacks
 
 * Is the effort needed to write a proper release script worth the time?
