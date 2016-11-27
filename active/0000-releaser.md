@@ -25,6 +25,7 @@ The release script will perform the following steps:
   * Verify push access to RubyGems
   * Verify write access to the Nanoc Google Group
   * Verify write access to Twitter
+  * Verify push access to nanoc.ws Git repository
 2. Verify version about to be released
   * Verify release notes
     * Verify presence
